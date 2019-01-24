@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第3节：事件 · GitBook</title>
+        <title>第5节：setTimeout · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="封装拖拽插件.html" />
+    <link rel="next" href="使用js实现栈.html" />
     
     
-    <link rel="prev" href="继承.html" />
+    <link rel="prev" href="封装拖拽插件.html" />
     
 
     </head>
@@ -142,7 +142,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="事件.html">
+        <li class="chapter " data-level="1.2.3" data-path="事件.html">
             
                 <a href="事件.html">
             
@@ -168,7 +168,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.5" data-path="setTimeout.html">
+        <li class="chapter active" data-level="1.2.5" data-path="setTimeout.html">
             
                 <a href="setTimeout.html">
             
@@ -281,7 +281,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >第3节：事件</a>
+        <a href=".." >第5节：setTimeout</a>
     </h1>
 </div>
 
@@ -296,8 +296,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x7B2C;3&#x8282;&#xFF1A;&#x4E8B;&#x4EF6;">&#x7B2C;3&#x8282;&#xFF1A;&#x4E8B;&#x4EF6;</h1>
-
+                                <h1 id="&#x7B2C;5&#x8282;&#xFF1A;settimeout">&#x7B2C;5&#x8282;&#xFF1A;setTimeout</h1>
+<p>&#x4E00;&#x4E2A;&#x5173;&#x4E8E;setTimeout&#x4E0E;&#x5FAA;&#x73AF;&#x95ED;&#x5305;&#x7684;&#x601D;&#x8003;&#x9898;&#x3002;</p>
+<blockquote>
+<p>&#x5229;&#x7528;&#x95ED;&#x5305;&#xFF0C;&#x4FEE;&#x6539;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x8BA9;&#x5FAA;&#x73AF;&#x8F93;&#x51FA;&#x7684;&#x7ED3;&#x679C;&#x4F9D;&#x6B21;&#x4E3A;1&#xFF0C; 2&#xFF0C;3&#xFF0C;4&#xFF0C;5</p>
+<pre><code>for(var i = 1; i &lt;= 5; i++) {
+ setTimeout(function(){
+     console.log(i);
+ });
+}
+</code></pre></blockquote>
+<p>  &#x4E0A;&#x9762;&#x4F8B;&#x5B50; &#x5728;&#x63A7;&#x5236;&#x53F0;&#x6253;&#x5370;&#x51FA;&#x6765;&#x7684;&#x7ED3;&#x679C;&#x662F; 5 &#x4E2A; 6&#xFF0C;setTmeout&#x662F;&#x5728;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x624D;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5728;for&#x5FAA;&#x73AF;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x7A0B;&#x5E8F;&#x5E76;&#x6CA1;&#x6709;&#x7ACB;&#x5373;&#x5F00;&#x59CB;&#x6267;&#x884C;setTimeout&#x8BED;&#x53E5;&#x4F53;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x662F;&#x6BCF;&#x6B21;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x5C06;setTimeout&#x6DFB;&#x52A0;&#x5230;&#x4E86;js&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x7B49;for&#x5FAA;&#x73AF;&#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;js&#x7A0B;&#x5E8F;&#x7A7A;&#x95F2;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x624D;&#x5F00;&#x59CB;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x90A3;&#x4E2A;&#x65F6;&#x5019; i &#x7684;&#x503C;&#x8DF3;&#x51FA;&#x5FAA;&#x73AF;&#x540E;&#x53D8;&#x6210;&#x4E86;6&#xFF0C;&#x6240;&#x4EE5;&#x540E;&#x9762;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x4E86;5&#x6B21; setTimeout &#x8F93;&#x51FA;&#x4E86;5&#x6B21; &apos;6&apos;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x8BA9;&#x8F93;&#x51FA;&#x7684;&#x7ED3;&#x679C;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x5FC5;&#x987B;&#x501F;&#x52A9;&#x95ED;&#x5305;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x6BCF;&#x6B21;&#x5FAA;&#x73AF;&#x65F6;&#xFF0C;&#x90FD;&#x5C06;i&#x503C;&#x4FDD;&#x5B58;&#x518D;&#x4E00;&#x4E2A;&#x95ED;&#x5305;&#x4E2D;&#xFF0C;&#x5F53;setTimeout &#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x64CD;&#x4F5C;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5219;&#x8BBF;&#x95EE;&#x5BF9;&#x5E94;&#x95ED;&#x5305;&#x4E2D;&#x4FDD;&#x5B58;&#x7684;i&#x503C;&#x5373;&#x53EF;&#x3002;(&#x5229;&#x7528;&#x95ED;&#x5305;&#x4FDD;&#x5B58;&#x6BCF;&#x6B21;&#x5FAA;&#x73AF;&#x65F6;i&#x7684;&#x503C;&#xFF0C;&#x6267;&#x884C;setTimeout &#x65F6;&#x8BBF;&#x95EE;&#x95ED;&#x5305;&#x4E2D;&#x7684;i)&#x3002;</p>
+<pre><code>for(var i = 1; i &lt;= 5; i++){
+    (function(i){
+        setTimeout(function(){
+             console.log(i);
+        })
+    })(i)
+}
+</code></pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x5728;setTimeout&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5904;&#x5229;&#x7528;&#x95ED;&#x5305;&#x3002;</p>
+<pre><code>for(var i = 1; i &lt;= 5; i++) {
+    setTimeout(function(i){
+        return function() {
+            console.log(i);
+        }
+    })
+}
+</code></pre>
                                 
                                 </section>
                             
@@ -324,12 +350,12 @@
 
             
                 
-                <a href="继承.html" class="navigation navigation-prev " aria-label="Previous page: 第2节：JS继承">
+                <a href="封装拖拽插件.html" class="navigation navigation-prev " aria-label="Previous page: 第4节：封装拖拽插件">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="封装拖拽插件.html" class="navigation navigation-next " aria-label="Next page: 第4节：封装拖拽插件">
+                <a href="使用js实现栈.html" class="navigation navigation-next " aria-label="Next page: 第6节：使用js实现栈">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -340,7 +366,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第3节：事件","level":"1.2.3","depth":2,"next":{"title":"第4节：封装拖拽插件","level":"1.2.4","depth":2,"path":"Chapter1/封装拖拽插件.md","ref":"Chapter1/封装拖拽插件.md","articles":[]},"previous":{"title":"第2节：JS继承","level":"1.2.2","depth":2,"path":"Chapter1/继承.md","ref":"Chapter1/继承.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter1/事件.md","mtime":"2019-01-24T03:57:05.620Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-24T09:05:22.235Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第5节：setTimeout","level":"1.2.5","depth":2,"next":{"title":"第6节：使用js实现栈","level":"1.2.6","depth":2,"path":"Chapter1/使用js实现栈.md","ref":"Chapter1/使用js实现栈.md","articles":[]},"previous":{"title":"第4节：封装拖拽插件","level":"1.2.4","depth":2,"path":"Chapter1/封装拖拽插件.md","ref":"Chapter1/封装拖拽插件.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter1/setTimeout.md","mtime":"2019-01-24T07:54:08.732Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-24T09:05:22.235Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

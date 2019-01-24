@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第3节：事件 · GitBook</title>
+        <title>第6节：使用js实现栈 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="封装拖拽插件.html" />
+    <link rel="next" href="迭代数组.html" />
     
     
-    <link rel="prev" href="继承.html" />
+    <link rel="prev" href="setTimeout.html" />
     
 
     </head>
@@ -142,7 +142,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="事件.html">
+        <li class="chapter " data-level="1.2.3" data-path="事件.html">
             
                 <a href="事件.html">
             
@@ -181,7 +181,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6" data-path="使用js实现栈.html">
+        <li class="chapter active" data-level="1.2.6" data-path="使用js实现栈.html">
             
                 <a href="使用js实现栈.html">
             
@@ -281,7 +281,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >第3节：事件</a>
+        <a href=".." >第6节：使用js实现栈</a>
     </h1>
 </div>
 
@@ -296,8 +296,44 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x7B2C;3&#x8282;&#xFF1A;&#x4E8B;&#x4EF6;">&#x7B2C;3&#x8282;&#xFF1A;&#x4E8B;&#x4EF6;</h1>
+                                <h1 id="&#x7B2C;6&#x8282;&#xFF1A;&#x4F7F;&#x7528;js&#x5B9E;&#x73B0;&#x6808;">&#x7B2C;6&#x8282;&#xFF1A;&#x4F7F;&#x7528;js&#x5B9E;&#x73B0;&#x6808;</h1>
+<blockquote>
+<p>&#x9996;&#x5148;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x4EC0;&#x4E48;&#x662F;&#x6808;&#xFF0C;&#x6808;&#x662F;&#x4E00;&#x4E2A;&#x540E;&#x8FDB;&#x5148;&#x51FA;&#x7684;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x6267;&#x884C;&#x8D77;&#x6765;&#x6548;&#x7387;&#x6BD4;&#x8F83;&#x9AD8;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x6808;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#xFF0C;&#x51FA;&#x6808;pop()&#xFF0C;&#x5F39;&#x51FA;&#x6808;&#x9876;&#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x5220;&#x9664;&#x8BE5;&#x5143;&#x7D20;&#xFF1B;&#x5165;&#x6808;push()&#xFF0C;&#x5411;&#x6808;&#x4E2D;&#x6DFB;&#x52A0;&#x5143;&#x7D20;&#xFF0C;&#x6808;&#x957F;&#x5EA6;&#x589E;&#x52A0;&#xFF1B;&#x8BFB;&#x53D6;&#x6808;&#x9876;&#x5143;&#x7D20;peek()</p>
+<p>&#x4F7F;&#x7528;js&#x7684;&#x6784;&#x9020;&#x6A21;&#x5F0F;&#x521B;&#x5EFA;&#x6808;&#x7C7B;&#xFF0C;&#x539F;&#x578B;&#x8FDB;&#x884C;&#x5171;&#x4EAB;&#x4E3B;&#x8981;&#x65B9;&#x6CD5;</p>
+</blockquote>
+<h4 id="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;">&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;</h4>
+<pre><code>(function(window){
+    function Stack() {
+        this.dataStore = [];
+    }
 
+    Stack.prototype = {
+        constructor: Stack,
+        pop: function() {
+            return this.dataStore.pop(); // &#x51FA;&#x6808;&#xFF0C;&#x8FD4;&#x56DE;&#x6808;&#x9876;&#x5143;&#x7D20;&#xFF0C;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x51CF;&#x4E00;
+        },
+        push: function(value) {
+            return this.dataStore.push(value); // &#x5165;&#x6808;&#xFF0C;&#x5728;&#x6808;&#x9876;&#x6DFB;&#x52A0;&#x5143;&#x7D20;&#xFF0C;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x52A0;&#x4E00;
+        },
+        peek: function() {
+            return this.dataStore[this.dataStore.length - 1];
+        },
+        isEmpty: function() {
+            return this.dataStore.length === 0;
+        },
+        clear: function() {
+            return this.dataStore = [];
+        },
+        size: function() {
+            return this.dataStore.length;
+        }
+    }
+
+    window.Stack = Stack;
+
+})(window)
+</code></pre>
                                 
                                 </section>
                             
@@ -324,12 +360,12 @@
 
             
                 
-                <a href="继承.html" class="navigation navigation-prev " aria-label="Previous page: 第2节：JS继承">
+                <a href="setTimeout.html" class="navigation navigation-prev " aria-label="Previous page: 第5节：setTimeout">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="封装拖拽插件.html" class="navigation navigation-next " aria-label="Next page: 第4节：封装拖拽插件">
+                <a href="迭代数组.html" class="navigation navigation-next " aria-label="Next page: 第7节：迭代转换多元数组为一元数组">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -340,7 +376,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第3节：事件","level":"1.2.3","depth":2,"next":{"title":"第4节：封装拖拽插件","level":"1.2.4","depth":2,"path":"Chapter1/封装拖拽插件.md","ref":"Chapter1/封装拖拽插件.md","articles":[]},"previous":{"title":"第2节：JS继承","level":"1.2.2","depth":2,"path":"Chapter1/继承.md","ref":"Chapter1/继承.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter1/事件.md","mtime":"2019-01-24T03:57:05.620Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-24T09:05:22.235Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第6节：使用js实现栈","level":"1.2.6","depth":2,"next":{"title":"第7节：迭代转换多元数组为一元数组","level":"1.2.7","depth":2,"path":"Chapter1/迭代数组.md","ref":"Chapter1/迭代数组.md","articles":[]},"previous":{"title":"第5节：setTimeout","level":"1.2.5","depth":2,"path":"Chapter1/setTimeout.md","ref":"Chapter1/setTimeout.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter1/使用js实现栈.md","mtime":"2019-01-24T08:18:15.087Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-24T09:05:22.235Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
