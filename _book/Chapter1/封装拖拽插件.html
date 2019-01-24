@@ -1,0 +1,470 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>第4节: 封装拖拽插件 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../Chapter2/" />
+    
+    
+    <link rel="prev" href="事件.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第一章
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="闭包原理.html">
+            
+                <a href="闭包原理.html">
+            
+                    
+                    第1节：闭包原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="继承.html">
+            
+                <a href="继承.html">
+            
+                    
+                    第2节：JS继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="事件.html">
+            
+                <a href="事件.html">
+            
+                    
+                    第3节：事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4" data-path="封装拖拽插件.html">
+            
+                <a href="封装拖拽插件.html">
+            
+                    
+                    第4节: 封装拖拽插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Chapter2/">
+            
+                <a href="../Chapter2/">
+            
+                    
+                    第二章
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../Chapter3/">
+            
+                <a href="../Chapter3/">
+            
+                    
+                    第三章
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../Chapter4/">
+            
+                <a href="../Chapter4/">
+            
+                    
+                    第四章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >第4节: 封装拖拽插件</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x7B2C;4&#x8282;-&#x5C01;&#x88C5;&#x62D6;&#x62FD;&#x63D2;&#x4EF6;">&#x7B2C;4&#x8282;: &#x5C01;&#x88C5;&#x62D6;&#x62FD;&#x63D2;&#x4EF6;</h1>
+<p><strong>&#x5C01;&#x88C5;&#x62D6;&#x62FD;&#x63D2;&#x4EF6;</strong></p>
+<pre><code>;(function($){
+
+    var transform = getTransform(); // &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x5B9E;&#x4F8B;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x88AB;&#x5B9E;&#x4F8B;&#x8BBF;&#x95EE;
+
+    // &#x6784;&#x9020;&#x65B9;&#x6CD5;
+    function Drag(el, option){ // &#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5C5E;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x5355;&#x72EC;&#x62E5;&#x6709;
+        var default = {
+            startX: 0;
+            startY: 0;
+            sourceX: 0;
+            sourceY: 0;
+        }
+        this.option = $.extend(true, defaults, option);
+        this.elme = $(el);
+        this.init();
+    }
+
+    // &#x539F;&#x578B;&#x65B9;&#x6CD5;
+    Drag.prototype = {
+        constructor: Drag,
+        init: function() {
+            this.setDrag();
+        },
+        // &#x83B7;&#x53D6;&#x5143;&#x7D20;&#x5C5E;&#x6027;
+        getStyle: function(propery){
+            return document.defaultView.getComputedStyle ? 
+                document.defaultView.getComputedStyle(this.elem, false)[propery] :
+                this.elem.currentStyle[propery];
+        },
+        // &#x83B7;&#x53D6;&#x5143;&#x7D20;&#x521D;&#x59CB;&#x4F4D;&#x7F6E;
+        getPosition: function() {
+            var pos = { x: 0, y: 0 };
+            if (transform) {
+                var transformValue = this.getStyle(transform);
+                if (transformValue == &apos;none&apos;) {
+                    this.elem.style[transform] = &apos;translate(0, 0)&apos;;
+                } else {
+                    var temp = transformValue.match(/-?\d+/g);
+                    pos = {
+                        x: parseInt(temp[4].trim()),
+                        y: parseInt(temp[5].trim())
+                    }
+                }
+            } else {
+                if (this.getStyle(&apos;position&apos;) == &apos;static&apos;) {
+                    this.elem.style.position = &apos;relative&apos;;
+                } else {
+                    pos = {
+                        x: parseInt(this.getStyle(&apos;left&apos;) ? this.getStyle(&apos;left&apos;) : 0),
+                        y: parseInt(this.getStyle(&apos;top&apos;) ? this.getStyle(&apos;top&apos;) : 0)
+                    }
+                }
+            }
+            return pos;
+        },
+        // &#x8BBE;&#x7F6E;&#x5143;&#x7D20;&#x7684;&#x521D;&#x59CB;&#x4F4D;&#x7F6E;
+        setPosition: function(pos) {
+            if (transform) {
+                this.elem.style[transfomr] = &apos;translate(&apos;+ pos.x + &apos;px,&apos; + pos.y + &apos;px)&apos; ;
+            } else {
+                this.elem.style.left = pos.x + &apos;px&apos;;
+                this.elem.style.top = pos.y + &apos;px&apos;;
+            }
+        },
+        // &#x8BE5;&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x7ED1;&#x5B9A;&#x4E8B;&#x4EF6;
+        setDrag: function() {
+            var self = this;
+            this.elem.addEventListener(&apos;mousedown&apos;, start, false);
+            function start(event) {
+                self.option.startX = event.pageX;
+                self.option.startY = event.pageY;
+
+                var pos = self.getPosition();
+
+                self.option.sourceX = pos.x;
+                self.option.sourceY = pos.y;
+
+                document.addEventListener(&apos;mouseover&apos;, move, false);
+                document.addEventListener(&apos;mouseup&apos;, end, false);
+            }
+            function move(event) {
+                var currentX = event.pageX;
+                var currentY = event.pageY;
+
+                var distanceX = currentX - self.option.startX;
+                var distanceY = currentY - self.option.startY;
+
+                self.setPosition({
+                    x: (self.option.sourceX + distanceX).toFixed(),
+                    y: (self.option.sourceY + distanceY).toFixed()
+                })
+            }
+            function end(event) {
+                document.removeEventListener(&apos;mousemove&apos;, move);
+                document.removeEventListener(&apos;mouseup&apos;, end);
+            }
+        }
+    }
+
+    // &#x79C1;&#x6709;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x6D4F;&#x89C8;&#x5668;&#x652F;&#x6301;&#x7684;transform&#x517C;&#x5BB9;&#x5199;&#x6CD5;
+    function getTransform() {
+        var transform = &apos;&apos;,
+            divStyle = document.createElement(&apos;div&apos;).style,
+            transformArr = [&apos;transform&apos;, &apos;webkitTransform&apos;, &apos;MozTransform&apos;, &apos;msTransform&apos;, &apos;OTransfrom&apos;],
+            i = 0,
+            len = transformArr.length;
+
+        for (;i&lt;len;i++) {
+           if (transformArr[i] in divStyle) {
+              return transform = transformArr[i];    
+           }
+        }
+
+        return transform;
+    }
+
+    // &#x4E00;&#x79CD;&#x5BF9;&#x5916;&#x66B4;&#x9732;&#x7684;&#x65B9;&#x5F0F;
+    window.Drag = Drag;
+
+    $.fn.Drag = function (options) {
+       var obj = new Drag(this, options);
+       return obj;
+    }
+
+})(jQuery);
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="事件.html" class="navigation navigation-prev " aria-label="Previous page: 第3节：事件">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../Chapter2/" class="navigation navigation-next " aria-label="Next page: 第二章">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第4节: 封装拖拽插件","level":"1.2.4","depth":2,"next":{"title":"第二章","level":"1.3","depth":1,"path":"Chapter2/README.md","ref":"Chapter2/README.md","articles":[]},"previous":{"title":"第3节：事件","level":"1.2.3","depth":2,"path":"Chapter1/事件.md","ref":"Chapter1/事件.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter1/封装拖拽插件.md","mtime":"2019-01-24T06:26:09.653Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-24T06:26:23.465Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
